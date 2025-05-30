@@ -1,0 +1,15 @@
+{
+  "requires": {
+    "[production]": {
+      "db": "hana",
+      "auth": "xsuaa"
+    },
+    "auth": {
+      "kind": "mocked"
+    },
+    "db": "sqlite",
+    "html5-runtime": true,
+    "destinations": true,
+    "workzone": true
+  }
+}

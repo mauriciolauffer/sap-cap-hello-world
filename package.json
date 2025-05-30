@@ -1,0 +1,57 @@
+{
+  "name": "sap-cap-hello-world",
+  "version": "1.0.0",
+  "description": "SAP CAP Hello World",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@sap/cds": "^8.9.4",
+    "@sap/cds-hana": "^2.0.0",
+    "@sap/xsenv": "^5.6.1",
+    "@sap/xssec": "^4",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.10.0",
+    "@cap-js/sqlite": "^1.11.1",
+    "@sap/cds-dk": "^8",
+    "@sap/ux-specification": "^1.124.17",
+    "eslint": "^9.27.0",
+    "eslint-config-mlauffer-ui5": "^2.1.0",
+    "prettier": "^3.5.3",
+    "wdio-qunit-service": "^2.0.0"
+  },
+  "peerDependencies": {
+    "@sap/cds-dk": "^8",
+    "mbt": "^1"
+  },
+  "peerDependenciesMeta": {
+    "@sap/cds-dk": {
+      "optional": true
+    },
+    "mbt": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "hybrid": "cds watch --profile hybrid",
+    "lint": "prettier . --check --cache && eslint . --cache",
+    "pretty": "prettier . --write --cache",
+    "build": "mbt build -t gen --mtar archive",
+    "deploy": "cf deploy gen/archive.mtar --retries 1 --delete-services",
+    "undeploy": "cf undeploy sap-cap-hello-world --delete-services --delete-service-keys --delete-service-brokers"
+  },
+  "sapux": [
+    "app/admin-books",
+    "app/browse"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauriciolauffer/sap-cap-hello-world.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mauriciolauffer/sap-cap-hello-world/issues"
+  }
+}
