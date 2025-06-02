@@ -15,7 +15,7 @@ jobs:
           registry-url: https://registry.npmjs.org
           cache: npm
       - run: npm i -g @sap/cds-dk mbt
-      - run: npm ci
+      - run: npm i
       - run: npm run build
       - name: deploy-to-sap-btp-with-ctms
         uses: mauriciolauffer/deploy-to-sap-btp-with-ctms@v0.0.3
