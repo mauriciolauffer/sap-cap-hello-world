@@ -9,7 +9,6 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-        - npm ci
         - npx cds build --production
 modules:
   - name: sap-cap-hello-world-srv
@@ -19,7 +18,8 @@ modules:
       instances: 1
       buildpack: nodejs_buildpack
     build-parameters:
-      builder: npm-ci
+      builder: custom
+      commands: []
     provides:
       - name: srv-api # required by consumers of CAP services (e.g. approuter)
         properties:
@@ -28,14 +28,21 @@ modules:
       - name: sap-cap-hello-world-destination
       - name: sap-cap-hello-world-db
       - name: sap-cap-hello-world-auth
+    properties:
+      OPTIMIZE_MEMORY: true
 
   - name: sap-cap-hello-world-db-deployer
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
+    build-parameters:
+      builder: custom
+      commands: []
     requires:
       - name: sap-cap-hello-world-db
+    properties:
+      OPTIMIZE_MEMORY: true
 
   - name: sap-cap-hello-world-app-deployer
     type: com.sap.application.content
@@ -63,10 +70,9 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - npm ci
+        - npm i
         - npm run build
-      supported-platforms:
-        []
+      supported-platforms: []
   - name: sapcaphelloworldbrowse
     type: html5
     path: app/browse
@@ -74,10 +80,9 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - npm ci
+        - npm i
         - npm run build
-      supported-platforms:
-        []
+      supported-platforms: []
 
   - name: sap-cap-hello-world-destinations
     type: com.sap.application.content
@@ -130,11 +135,6 @@ resources:
                 ProxyType: Internet
                 HTML5.ForwardAuthToken: true
                 HTML5.DynamicDestination: true
-              - Name: ui5
-                URL: https://ui5.sap.com
-                Authentication: NoAuthentication
-                Type: HTTP
-                ProxyType: Internet
     requires:
       - name: srv-api
         group: destinations
@@ -165,5 +165,5 @@ resources:
       service-plan: application
       path: ./xs-security.json
       config:
-        xsappname: sap-cap-hello-world-${org}-${space}
+        xsappname: sap-cap-hello-world-auth
         tenant-mode: dedicated
