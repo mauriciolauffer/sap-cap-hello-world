@@ -10,7 +10,7 @@
     "@sap/cds-hana": "^2.0.0",
     "@sap/xsenv": "^5.6.1",
     "@sap/xssec": "^4",
-    "express": "^4.21.2"
+    "express": "^4.22.1"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.10.0",
