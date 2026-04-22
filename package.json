@@ -16,7 +16,7 @@
     "@cap-js/cds-types": "^0.10.0",
     "@cap-js/sqlite": "^1.11.1",
     "@sap/cds-dk": "^8",
-    "@sap/ux-specification": "^1.124.17",
+    "@sap/ux-specification": "^1.144.1",
     "eslint": "^9.27.0",
     "eslint-config-mlauffer-ui5": "^2.1.0",
     "prettier": "^3.5.3",
